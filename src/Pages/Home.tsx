@@ -3,6 +3,7 @@ import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeE
 import Button from '@mui/material/Button';
 import '../App.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import Game from './Game';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -15,6 +16,7 @@ const MenuProps = {
   },
 };
 
+
 const numberQuestions:number[] = [
     5,
     10,
@@ -25,16 +27,18 @@ const numberQuestions:number[] = [
 
 
 function Home() {
-  const [nQuestions, setNQuestions] = React.useState<any>(10);
-
-const handleChange = (event: SelectChangeEvent) => {
-    setNQuestions(event.target.value as any);
-    
-};
+    const [nQuestions, setNQuestions] = React.useState<any>(10);
+    const [play, setPlay] = React.useState<any>(false);
+    const handleChange = (event: SelectChangeEvent) => {
+        setNQuestions(event.target.value as any);
+        
+    };
 
     
   return (
     <div className="Home">
+        {play ? <Game nQuestions={nQuestions} /> :
+        <div className="div">
         <Typography variant="h1" > Quizz-App </Typography>
         <Typography variant="subtitle1" > Choose the number of questions: </Typography>
         <div className="form">
@@ -60,9 +64,10 @@ const handleChange = (event: SelectChangeEvent) => {
                 </Select>
             </FormControl>
             
-            <Button variant="contained"  size='large'  endIcon ={<PlayArrowIcon/>}>Play</Button>
+            <Button variant="contained"  size='large' onClick={() => { setPlay(true) }}  endIcon ={<PlayArrowIcon/>}>Play</Button>
         </div>
-
+        </div>
+    }
     </div>
     
   );

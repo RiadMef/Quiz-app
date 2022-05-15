@@ -60,13 +60,8 @@ class Game extends  React.Component<any, any> {
 
         return (
             <div className="game">
-                <h1>{this.state.question}</h1>
-                <button onClick={this.checkAnswer}>True</button>
-                <button onClick={this.checkAnswer}>False</button>
-                {this.state.showAnswer ? <h2>{this.state.answer}</h2> : null}
-                <button onClick={this.nextQuestion}>Next</button>
-                <h2>Correct: {this.state.correct}</h2>
-                <h2>Incorrect: {this.state.incorrect}</h2>
+              
+                {this.props.nQuestions}
             </div>
         )
     }

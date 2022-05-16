@@ -37,7 +37,7 @@ class Game extends  React.Component<any, any> {
         }
 
     getQuestion = () => {
-        fetch('https://opentdb.com/api.php?amount=1&type=multiple')
+        fetch('https://opentdb.com/api.php?amount=1&type=multiple&encode=base64')
         .then(res => res.json())
         .then(res => {
             this.setState({
@@ -117,13 +117,10 @@ class Game extends  React.Component<any, any> {
         return (
             <div className="Game">
                 <div className="question">
-                    <h1>{this.state.question}</h1>
-                    {this.state.showAnswer ? <h2 style={{color: this.getColor(this.state.answered)}}>{this.state.answer}</h2> : null}
+                    <h1>{atob(this.state.question)}</h1>
+                    {this.state.showAnswer ? <h2 style={{color: this.getColor(this.state.answered)}}>{atob(this.state.answer)}</h2> : null}
                 </div>
-                <div className="answers">
-                    <button onClick={this.checkAnswer} value="True">True</button>
-                    <button onClick={this.checkAnswer} value="False">False</button>
-                </div>
+               
                 <div className="buttonGrid">
                    
 
@@ -138,7 +135,7 @@ class Game extends  React.Component<any, any> {
                                 value={e}
                                 disabled={this.state.showAnswer}
                             >
-                                {e}
+                                {atob(e)}
                             </Button>
                         )
                     })}

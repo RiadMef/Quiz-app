@@ -10,7 +10,7 @@
 .App {
   text-align: center;
 }
-.Home {
+.div-Home {
   text-align: center;
   margin-top: 300px;
   margin-bottom: 100px;
@@ -21,6 +21,19 @@
 
 
 
+}
+.Game {
+  margin: 150px;
+  margin-bottom: 100px;
+  margin-right: 150px;
+  margin-left: 80px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.titre {
+  margin-bottom: 100px;
 }
 .buttonGrid {
   display: grid;

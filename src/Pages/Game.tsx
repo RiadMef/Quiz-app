@@ -1,5 +1,5 @@
 
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
 
 class Game extends  React.Component<any, any> {
@@ -116,6 +116,8 @@ class Game extends  React.Component<any, any> {
 
         return (
             <div className="Game">
+                <div className="titre"> <Typography  variant="h1" > Quizz-App </Typography></div>
+               
                 <div className="question">
                     <h1>{atob(this.state.question)}</h1>
                     {this.state.showAnswer ? <h2 style={{color: this.getColor(this.state.answered)}}>{atob(this.state.answer)}</h2> : null}

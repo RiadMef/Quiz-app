@@ -38,7 +38,7 @@ function Home() {
   return (
     <div className="Home">
         {play ? <Game nQuestions={nQuestions} /> :
-        <div className="div">
+        <div className="div-Home">
         <Typography variant="h1" > Quizz-App </Typography>
         <Typography variant="subtitle1" > Choose the number of questions: </Typography>
         <div className="form">

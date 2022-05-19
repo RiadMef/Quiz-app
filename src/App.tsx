@@ -1,5 +1,5 @@
 import React from 'react';
-import Home from './Pages/Home';
+import Home from './Pages/Home/Home';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 

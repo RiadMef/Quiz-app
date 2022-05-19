@@ -1,10 +1,10 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, OutlinedInput, Select, SelectChangeEvent, Theme, Typography, useTheme } from '@mui/material';
 import Button from '@mui/material/Button';
-import '../App.css';
+import './Home.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import Game from './Game';
-import { NUMBER_QUESTIONS,MENU_PROPS} from '../Assets/const';
+import Game from '../Game/Game';
+import { NUMBER_QUESTIONS,MENU_PROPS} from '../../Assets/const';
 
 
 

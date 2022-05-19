@@ -1,11 +1,15 @@
 
 import { Button, Typography } from '@mui/material';
 import React from 'react';
+import Replay from '../ReplayGame/ReplayGame';
+import './Game.css'
 
 class Game extends  React.Component<any, any> {
   constructor(props:any) {
     super(props);
     this.state = {
+        nQuestions: this.props.nQuestions,
+        questionLeft: this.props.nQuestions,
         question: '',
         answer: '',
         correct: 0,
@@ -45,6 +49,7 @@ class Game extends  React.Component<any, any> {
     }
 
     checkAnswer = (e:any) => {
+        this.setState({questionLeft : this.state.questionLeft - 1});
         if (e.target.value === this.state.answer) {
             this.setState({
                 correct: this.state.correct + 1,
@@ -52,7 +57,6 @@ class Game extends  React.Component<any, any> {
             })
         } else {
             this.setState({
-                incorrect: this.state.incorrect + 1,
                 showAnswer: true
             })
         }
@@ -102,9 +106,13 @@ class Game extends  React.Component<any, any> {
     render() {
 
         return (
-            <div className="Game">
-                <div className="titre"> <Typography  variant="h1" > Quizz-App </Typography></div>
+           
                
+                <div className="Game">
+                { this.state.questionLeft > 0 ?
+                <div className="divQuestion">
+                <div className="titre"> <Typography  variant="h1" > Quizz-App </Typography></div>
+                <div className="score"> {this.state.questionLeft}</div>
                 <div className="question">
                     <h1>{atob(this.state.question)}</h1>
                     {this.state.showAnswer ? <h2 style={{color: this.getColor(this.state.answered)}}>{atob(this.state.answer)}</h2> : null}
@@ -130,16 +138,16 @@ class Game extends  React.Component<any, any> {
                     })}
                 </div>
                 <div className="next">
-                    <Button  onClick={this.nextQuestion}>Next</Button>
+                    <Button disabled ={!this.state.showAnswer} onClick={this.nextQuestion}>Next</Button>
                 </div>
+                </div>
+                : <Replay correct={this.state.correct} nQuestions={this.state.nQuestions}/>}
             </div>
+
+           
+            
         )
     }
 }
 
 export default Game;
-
-
-
-
-

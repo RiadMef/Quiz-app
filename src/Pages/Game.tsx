@@ -9,28 +9,19 @@ class Game extends  React.Component<any, any> {
         question: '',
         answer: '',
         correct: 0,
-        incorrect: 0,
         showAnswer: false,
         answered: '',
-        incorrect_answers: [],
         all_answers: [],
-        random : [],
         normalColor:'primary',
         correctColor:'green',
         incorrectColor:'red',
         disabled: false,
         load:false,
-
-        
-        BIG:''
-
-    
     };
   
 
 
   }
-  first = true;
 
     componentDidMount() {
         this.getQuestion();
@@ -41,14 +32,10 @@ class Game extends  React.Component<any, any> {
         .then(res => res.json())
         .then(res => {
             this.setState({
-                BIG:res.results[0],
                 question: res.results[0].question,
                 answer: res.results[0].correct_answer,
-                incorrect_answers: res.results[0].incorrect_answers,
                 showAnswer: false,
-
-                all_answers: [...res.results[0].incorrect_answers, res.results[0].correct_answer],
-                random: this.randomize([...res.results[0].incorrect_answers, res.results[0].correct_answer])
+                all_answers: this.randomize([...res.results[0].incorrect_answers, res.results[0].correct_answer])
                
             })
             
@@ -126,7 +113,7 @@ class Game extends  React.Component<any, any> {
                 <div className="buttonGrid">
                    
 
-                    {this.state.random.map((e:any) => {
+                    {this.state.all_answers.map((e:any) => {
                         return (
                             <Button
 

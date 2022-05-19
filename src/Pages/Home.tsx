@@ -4,26 +4,8 @@ import Button from '@mui/material/Button';
 import '../App.css';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import Game from './Game';
+import { NUMBER_QUESTIONS,MENU_PROPS} from '../Assets/const';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 100,
-    },
-  },
-};
-
-
-const numberQuestions:number[] = [
-    5,
-    10,
-    15,
-    20,
-  
-];
 
 
 function Home() {
@@ -51,9 +33,9 @@ function Home() {
                 value={nQuestions}
                 onChange={handleChange}
                 input={<OutlinedInput label="Questions" />}
-                MenuProps={MenuProps}
+                MenuProps={MENU_PROPS}
                 >
-                {numberQuestions.map((nQ) => (
+                {NUMBER_QUESTIONS.map((nQ) => (
                     <MenuItem
                     key={nQ}
                     value={nQ}

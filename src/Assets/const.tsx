@@ -6,6 +6,7 @@ export const NUMBER_QUESTIONS:number[] = [
     20,
   
 ];
+export const TIME:number = 20;
 export const ITEM_HEIGHT = 48;
 export const ITEM_PADDING_TOP = 8;
 export const MENU_PROPS = {

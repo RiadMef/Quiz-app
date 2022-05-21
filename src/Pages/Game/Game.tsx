@@ -2,7 +2,9 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
 import Replay from '../ReplayGame/ReplayGame';
+import Timer from '../../components/Timer/Timer';
 import './Game.css'
+import {TIME} from '../../Assets/const';
 
 class Game extends  React.Component<any, any> {
   constructor(props:any) {
@@ -21,6 +23,7 @@ class Game extends  React.Component<any, any> {
         incorrectColor:'red',
         disabled: false,
         load:false,
+        timer : TIME,
     };
   
 
@@ -49,15 +52,18 @@ class Game extends  React.Component<any, any> {
     }
 
     checkAnswer = (e:any) => {
+    
         this.setState({questionLeft : this.state.questionLeft - 1});
         if (e.target.value === this.state.answer) {
             this.setState({
                 correct: this.state.correct + 1,
-                showAnswer: true
+                showAnswer: true,
+                timer :0,
             })
         } else {
             this.setState({
-                showAnswer: true
+                showAnswer: true,
+                timer :0,
             })
         }
         this.setState({
@@ -68,7 +74,8 @@ class Game extends  React.Component<any, any> {
 
     nextQuestion = () => {
         this.setState({
-            showAnswer: false
+            showAnswer: false,
+            timer: TIME
         })
         this.getQuestion();
         
@@ -100,7 +107,22 @@ class Game extends  React.Component<any, any> {
 
     }
 
-    
+    changeTimer = (e:any) => {
+        if (this.state.timer === 0) {
+            this.setState({
+                showAnswer: true,
+            })
+        }
+        else if(this.state.timer > 0 && !this.state.disabled){
+            this.setState({
+                timer: e
+            })
+        }
+
+     
+    }
+
+
 
 
     render() {
@@ -112,7 +134,7 @@ class Game extends  React.Component<any, any> {
                 { this.state.questionLeft > 0 ?
                 <div className="divQuestion">
                 <div className="titre"> <Typography  variant="h1" > Quizz-App </Typography></div>
-                <div className="score"> {this.state.questionLeft}</div>
+                <Timer changeTimer={this.changeTimer} timer = {this.state.timer}/>
                 <div className="question">
                     <h1>{decodeURIComponent(this.state.question)}</h1>
                     {this.state.showAnswer ? <h2 style={{color: this.getColor(this.state.answered)}}>{decodeURIComponent(this.state.answer)}</h2> : null}
